@@ -1,0 +1,50 @@
+<?php
+
+/**
+ * @file optimizely_x.module
+ * Module and hook implementations for Optimizely X.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function optimizely_x_menu() {
+  $items = array();
+  $items['admin/config/system/optimizely-x'] = array(
+    'title' => 'Optimizely X settings',
+    'description' => 'Configure integration with Optimizely X.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('optimizely_x_admin_settings_form'),
+    'access arguments' => array('administer optimizely x'),
+    'file' => 'optimizely_x.admin.inc',
+    'file path' => drupal_get_path('module', 'optimizely_x'),
+  );
+}
+
+/**
+ * Implements hook_permission().
+ */
+function optimizely_x_permission() {
+  return array(
+    'administer optimizely x' => array(
+      'title' => t('Administer Optimizely X'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_page_build().
+ */
+function optimizely_x_page_build(&$page) {
+  $project_id = variable_get('optimizely_x_project_id', '');
+  if (!$project_id) {
+    return;
+  }
+
+  $request_path = request_path();
+  $optimizely_paths = variable_get('optimizely_x_paths', '');
+  if (drupal_match_path($request_path, $optimizely_paths)) {
+    module_load_include('inc', 'optimizely_x');
+    optimizely_x_add_optimizely_snippet($project_id);
+  }
+}
