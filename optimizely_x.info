@@ -1,5 +1,4 @@
 name = Optimizely X
 description = Intregration with Optimizely X.
 core = 7.x
-project = Other
 configure = admin/config/system/optimizely-x

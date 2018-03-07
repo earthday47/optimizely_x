@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file optimizely_x.module
+ * @file
  * Module and hook implementations for Optimizely X.
  */
 
@@ -17,8 +17,8 @@ function optimizely_x_menu() {
     'page arguments' => array('optimizely_x_admin_settings_form'),
     'access arguments' => array('administer optimizely x'),
     'file' => 'optimizely_x.admin.inc',
-    'file path' => drupal_get_path('module', 'optimizely_x'),
   );
+  return $items;
 }
 
 /**

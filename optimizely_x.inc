@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * @file
  * Functions and utilities for Optimizely X module.
  */
 
