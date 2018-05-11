@@ -36,6 +36,10 @@ function optimizely_x_permission() {
  * Implements hook_page_build().
  */
 function optimizely_x_page_build(&$page) {
+  if (!variable_get('optimizely_x_enabled', FALSE)) {
+    return;
+  }
+
   $project_id = variable_get('optimizely_x_project_id', '');
   if (!$project_id) {
     return;

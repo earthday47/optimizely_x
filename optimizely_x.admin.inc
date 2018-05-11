@@ -9,6 +9,13 @@
  * Form builder callback fo Optimizely X admin settiings form.
  */
 function optimizely_x_admin_settings_form($form, &$form_state) {
+  $form['optimizely_x_enabled'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Optimizely X Enabled'),
+    '#description' => t('Uncheck this to prevent the snippet from being added to any page.'),
+    '#default_value' => variable_get('optimizely_x_enabled', FALSE),
+  );
+
   $form['optimizely_x_project_id'] = array(
     '#type' => 'textfield',
     '#title' => t('Project ID'),
